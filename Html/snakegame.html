@@ -1,0 +1,102 @@
+<head>
+<title> Snake Game </title>
+</head>
+<body>
+
+<div>
+<h1> The Snake Game </h1> 
+
+<!--create a canvas element-->
+
+
+<canvas id="game" width="600" height="600" 
+style="border:2px solid #000000;background-color:#aacfcf;"></canvas>
+
+<script>
+
+var canvas=document.getElementById("game");
+var context=canvas.getContext("2d");
+var x=canvas.width/2;
+var y=canvas.height-10;
+var dx=0;
+var dy=-10;
+var radius=10;
+var speed=10;
+
+var foodx = Math.floor(Math.random()*39)+10;
+var foody = Math.floor(Math.random()*39)+10;
+
+//loop runs to draw frames continously
+//keyboard event listeners
+//snake parts are circles
+
+for(i=0;i<=10;i++)
+{
+x=x+speed;
+
+context.beginPath();
+context.arc(x,y,radius,0,2*Math.PI);
+context.fillStyle="red";
+context.fill();
+context.closePath();
+
+context.beginPath();
+context.arc(foodx,foody,10,0,2*Math.PI);
+context.fillStyle="blue";
+context.fill();
+context.closePath();
+
+if(x>canvas.width-radius||x<radius)
+{
+x=canvas.width/2;
+y=canvas.height-10;
+speed=0;
+context.fillStyle="black";
+context.font="50px Arial";
+context.fillText("game over",canvas.width/3,canvas.height/2);
+}
+if(y>canvas.height-radius||y<radius)
+{
+y=canvas.height-10;
+speed=0;
+context.fillStyle="black";
+context.font="50px Arial";
+context.fillText("game over",canvas.width/3,canvas.height/2);
+}
+if(x==foodx&&y==foody)
+{
+speed=speed+2;
+foodx = Math.floor(Math.random()*39)+10;
+foody = Math.floor(Math.random()*39)+10;
+}
+//user inputs
+
+if(event.key=="ArrowLeft")
+{
+dx=-10;
+dy=0;
+}
+if(event.key=="ArrowRight")
+{
+dx=10;
+dy=0;
+}
+if(event.key=="ArrowDown")
+{
+dx=0;
+dy=10;
+}
+if(event.key=="ArrowUp")
+{
+dx=0;
+dy=-10;
+}
+
+x=x+dx;
+y=y+dy;
+}
+
+
+</script>
+</div>
+</body>
