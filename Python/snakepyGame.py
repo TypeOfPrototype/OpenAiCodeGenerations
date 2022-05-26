@@ -25,7 +25,8 @@ pygame.display.set_caption('Snake')
 #define display window clock
 clock = pygame.time.Clock()
 
-#define snake blocksize
+#define snake blocksize  
+
 block_size = 20
 
 #define snake speed
